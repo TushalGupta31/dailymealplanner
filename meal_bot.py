@@ -22,7 +22,7 @@ Dinner: <dish>
 Add 1 short health tip.
 """
 
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 EMAIL_FROM = os.getenv("EMAIL_FROM")
 EMAIL_TO = os.getenv("EMAIL_TO")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
@@ -42,13 +42,13 @@ Keep it practical and Indian home-style.
 """
 
     response = requests.post(
-        "https://api.openai.com/v1/chat/completions",
+        "https://api.groq.com/openai/v1/chat/completions",
         headers={
-            "Authorization": f"Bearer {OPENAI_API_KEY}",
+            "Authorization": f"Bearer {GROQ_API_KEY}",
             "Content-Type": "application/json",
         },
         json={
-            "model": "gpt-4o-mini",
+            "model": "llama3-8b-8192",
             "messages": [{"role": "user", "content": prompt}],
             "temperature": 0.7,
         },
@@ -57,9 +57,9 @@ Keep it practical and Indian home-style.
 
     data = response.json()
 
-    # 🔒 Defensive check – this is what fixes your crash
+    # Defensive check
     if "choices" not in data:
-        raise Exception(f"OpenAI API Error: {data}")
+        raise Exception(f"Groq API Error: {data}")
 
     return data["choices"][0]["message"]["content"]
 
