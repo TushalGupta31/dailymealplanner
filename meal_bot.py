@@ -26,6 +26,7 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 EMAIL_FROM = os.getenv("EMAIL_FROM")
 EMAIL_TO = os.getenv("EMAIL_TO")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
+print("GROQ_API_KEY loaded:", bool(GROQ_API_KEY))
 
 
 def generate_menu():
