@@ -27,6 +27,7 @@ EMAIL_FROM = os.getenv("EMAIL_FROM")
 EMAIL_TO = os.getenv("EMAIL_TO")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
 
+
 def generate_menu():
     prompt = f"""
 You are a personal Indian meal planner.
@@ -51,9 +52,17 @@ Keep it practical and Indian home-style.
             "messages": [{"role": "user", "content": prompt}],
             "temperature": 0.7,
         },
+        timeout=30,
     )
 
-    return response.json()["choices"][0]["message"]["content"]
+    data = response.json()
+
+    # 🔒 Defensive check – this is what fixes your crash
+    if "choices" not in data:
+        raise Exception(f"OpenAI API Error: {data}")
+
+    return data["choices"][0]["message"]["content"]
+
 
 def send_email(body):
     msg = MIMEText(body)
@@ -66,6 +75,7 @@ def send_email(body):
     server.login(EMAIL_FROM, EMAIL_PASSWORD)
     server.send_message(msg)
     server.quit()
+
 
 if __name__ == "__main__":
     menu = generate_menu()
