@@ -10,13 +10,13 @@ Location: India
 Goal: Healthy, sustainable eating (not extreme diet)
 Cuisine preference: Indian home-style food
 Veg/non Veg: Veg food or egg options only. No Non-Veg
-Dislikes: Non Veg Food excluding egg, Deep Fried Food, Food maid from maida
-Likes: Paneer, dal, rice, roti, Rajma, simple sabzi, light dinners, Rajasthani food, protein rich food
+Dislikes: Deep Fried Food, Food maid from maida, High Sugar Food, High Calorie Food
+Likes: Paneer, dal, rice, roti, Rajma, simple sabzi, Kadi, Brinjal, Potato, light dinners, Rajasthani food, protein rich food,
 Constraints
 - Lunch can be wholesome
 - Dinner should be light
 - All the meals should be protein rich
-- Avoid any meal having calorie than 400
+- Avoid any meal having calorie more than 500
 - Avoid any Deep fried Food
 - Avoid repeating same main dish on consecutive days
 - Prefer Indian foods mostly
@@ -26,10 +26,9 @@ IMPORTANT FORMAT RULES:
 - Do NOT use Markdown.
 - Do NOT use *, **, ###, or bullet symbols.
 - Use plain text only.
-- Use simple headings like:
+- Use headings with bold font:
 
 Output format:
-
 Meal Plan for <date>
 
 Lunch:
