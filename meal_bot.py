@@ -22,14 +22,16 @@ Dinner: <dish>
 Add 1 short health tip.
 """
 
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 EMAIL_FROM = os.getenv("EMAIL_FROM")
 EMAIL_TO = os.getenv("EMAIL_TO")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
-print("GROQ_API_KEY loaded:", bool(GROQ_API_KEY))
 
 
 def generate_menu():
+    if not OPENAI_API_KEY:
+        raise Exception("OPENAI_API_KEY is not set in GitHub Secrets")
+
     prompt = f"""
 You are a personal Indian meal planner.
 
@@ -43,13 +45,13 @@ Keep it practical and Indian home-style.
 """
 
     response = requests.post(
-        "https://api.groq.com/openai/v1/chat/completions",
+        "https://api.openai.com/v1/chat/completions",
         headers={
-            "Authorization": f"Bearer {GROQ_API_KEY}",
+            "Authorization": f"Bearer {OPENAI_API_KEY}",
             "Content-Type": "application/json",
         },
         json={
-            "model": "llama3-8b-8192",
+            "model": "gpt-4o-mini",
             "messages": [{"role": "user", "content": prompt}],
             "temperature": 0.7,
         },
@@ -58,9 +60,9 @@ Keep it practical and Indian home-style.
 
     data = response.json()
 
-    # Defensive check
+    # Defensive check so it never crashes silently
     if "choices" not in data:
-        raise Exception(f"Groq API Error: {data}")
+        raise Exception(f"OpenAI API Error: {data}")
 
     return data["choices"][0]["message"]["content"]
 
