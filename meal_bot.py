@@ -9,17 +9,21 @@ PREFERENCES = """
 Location: India
 Goal: Healthy, sustainable eating (not extreme diet)
 Cuisine preference: Indian home-style food
-Veg/Non-veg: Veg on weekdays, Non-veg allowed on weekends
-Dislikes: Brinjal, overly oily food
-Likes: Paneer, dal, rice, roti, simple sabzi, light dinners
-Constraints:
+Veg/non Veg: Veg food or egg options only. No Non-Veg
+Dislikes: Non Veg Food excluding egg, Deep Fried Food, Food maid from maida
+Likes: Paneer, dal, rice, roti, Rajma, simple sabzi, light dinners, Rajasthani food, protein rich food
+Constraints
 - Lunch can be wholesome
 - Dinner should be light
+- All the meals should be protein rich
+- Avoid any meal having calorie than 400
+- Avoid any Deep fried Food
 - Avoid repeating same main dish on consecutive days
+
 Output format:
 Lunch: <dish>
 Dinner: <dish>
-Add 1 short health tip.
+Add Calroies of food as well
 """
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
