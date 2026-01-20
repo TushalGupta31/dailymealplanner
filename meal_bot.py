@@ -19,11 +19,28 @@ Constraints
 - Avoid any meal having calorie than 400
 - Avoid any Deep fried Food
 - Avoid repeating same main dish on consecutive days
+- Prefer Indian foods mostly
+
+
+IMPORTANT FORMAT RULES:
+- Do NOT use Markdown.
+- Do NOT use *, **, ###, or bullet symbols.
+- Use plain text only.
+- Use simple headings like:
 
 Output format:
-Lunch: <dish>
-Dinner: <dish>
-Add Calroies of food as well
+
+Meal Plan for <date>
+
+Lunch:
+Dish:
+Calories:
+
+Dinner:
+Dish:
+Calories:
+
+
 """
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
